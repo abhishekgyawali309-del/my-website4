@@ -1,202 +1,217 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>2083 Batch Result Portal</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2083 Result Portal</title>
 
-    <style>
-        *{
-            margin:0;
-            padding:0;
-            box-sizing:border-box;
-            font-family:Arial, sans-serif;
-        }
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial;
+}
 
-        body{
-            background:linear-gradient(135deg,#1e3c72,#2a5298);
-            min-height:100vh;
-            color:white;
-        }
+body{
+    background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+    color:white;
+    min-height:100vh;
+}
 
-        .container{
-            width:90%;
-            max-width:1200px;
-            margin:auto;
-            padding-top:50px;
-            text-align:center;
-        }
+.container{
+    width:90%;
+    max-width:1200px;
+    margin:auto;
+    text-align:center;
+    padding-top:50px;
+}
 
-        h1{
-            font-size:42px;
-            margin-bottom:15px;
-        }
+h1{
+    margin-bottom:15px;
+    font-size:42px;
+}
 
-        p{
-            margin-bottom:40px;
-            font-size:18px;
-            opacity:.9;
-        }
+p{
+    margin-bottom:30px;
+}
 
-        .cards{
-            display:flex;
-            justify-content:center;
-            gap:30px;
-            flex-wrap:wrap;
-        }
+.cards{
+    display:flex;
+    justify-content:center;
+    gap:25px;
+    flex-wrap:wrap;
+}
 
-        .card{
-            width:280px;
-            height:180px;
-            background:rgba(255,255,255,0.15);
-            border:1px solid rgba(255,255,255,0.2);
-            border-radius:20px;
-            backdrop-filter:blur(10px);
-            display:flex;
-            flex-direction:column;
-            justify-content:center;
-            align-items:center;
-            cursor:pointer;
-            transition:.3s;
-            box-shadow:0 10px 25px rgba(0,0,0,.2);
-        }
+.card{
+    width:260px;
+    height:170px;
+    border-radius:20px;
+    background:rgba(255,255,255,0.12);
+    backdrop-filter:blur(12px);
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    cursor:pointer;
+    transition:.3s;
+}
 
-        .card:hover{
-            transform:translateY(-10px) scale(1.03);
-            background:rgba(255,255,255,0.25);
-        }
+.card:hover{
+    transform:translateY(-8px);
+    background:rgba(255,255,255,0.2);
+}
 
-        .locked{
-            opacity:.5;
-            cursor:not-allowed;
-        }
+.locked{
+    opacity:.45;
+    cursor:not-allowed;
+}
 
-        .card h2{
-            margin-bottom:10px;
-            font-size:30px;
-        }
+.form-page,
+.result-page{
+    display:none;
+    margin-top:40px;
+}
 
-        .form-page{
-            display:none;
-            margin-top:40px;
-        }
+form,.result-box{
+    width:420px;
+    max-width:95%;
+    margin:auto;
+    padding:30px;
+    border-radius:20px;
+    background:rgba(255,255,255,.12);
+    backdrop-filter:blur(12px);
+}
 
-        form{
-            width:400px;
-            max-width:95%;
-            margin:auto;
-            background:rgba(255,255,255,0.15);
-            padding:30px;
-            border-radius:20px;
-            backdrop-filter:blur(10px);
-        }
+input,select,button{
+    width:100%;
+    padding:14px;
+    margin:10px 0;
+    border:none;
+    border-radius:10px;
+    font-size:16px;
+}
 
-        input, select{
-            width:100%;
-            padding:14px;
-            margin:12px 0;
-            border:none;
-            border-radius:10px;
-            font-size:16px;
-            outline:none;
-        }
+button{
+    background:#00c853;
+    color:white;
+    cursor:pointer;
+}
 
-        button{
-            width:100%;
-            padding:14px;
-            border:none;
-            border-radius:10px;
-            background:#00c853;
-            color:white;
-            font-size:18px;
-            cursor:pointer;
-            transition:.3s;
-        }
+button:hover{
+    background:#00a844;
+}
 
-        button:hover{
-            background:#00a844;
-        }
+.back{
+    background:#ff5252;
+}
 
-        .back{
-            margin-top:20px;
-            background:#ff5252;
-        }
+.back:hover{
+    background:#e53935;
+}
 
-        .back:hover{
-            background:#e53935;
-        }
-    </style>
+.result-box h2{
+    margin:15px 0;
+}
+
+.grade{
+    font-size:50px;
+    color:#00ff95;
+    font-weight:bold;
+}
+</style>
 </head>
 <body>
 
-    <div class="container">
+<div class="container">
 
-        <!-- HOME PAGE -->
-        <div id="homePage">
-            <h1>2083 Batch Result Portal</h1>
-            <p>Select examination to view result</p>
+    <!-- HOME -->
+    <div id="homePage">
+        <h1>2083 Batch Result Portal</h1>
+        <p>Select Examination</p>
 
-            <div class="cards">
-                <div class="card locked">
-                    <h2>BLE</h2>
-                    <span>Coming Soon</span>
-                </div>
+        <div class="cards">
+            <div class="card locked">
+                <h2>BLE</h2>
+                <span>Locked</span>
+            </div>
 
-                <div class="card" onclick="openSEE()">
-                    <h2>SEE</h2>
-                    <span>Click to Access</span>
-                </div>
+            <div class="card" onclick="openSEE()">
+                <h2>SEE</h2>
+                <span>Access</span>
+            </div>
 
-                <div class="card locked">
-                    <h2>+2</h2>
-                    <span>Coming Soon</span>
-                </div>
+            <div class="card locked">
+                <h2>+2</h2>
+                <span>Locked</span>
             </div>
         </div>
-
-        <!-- SEE FORM -->
-        <div class="form-page" id="seePage">
-            <h1>SEE Result Search</h1>
-
-            <form onsubmit="submitForm(event)">
-                <input type="text" placeholder="Enter Symbol Number" required>
-
-                <input type="text" placeholder="Enter School Name" required>
-
-                <select required>
-                    <option value="">Select Province</option>
-                    <option>Koshi Province</option>
-                    <option>Madhesh Province</option>
-                    <option>Bagmati Province</option>
-                    <option>Gandaki Province</option>
-                    <option>Lumbini Province</option>
-                    <option>Karnali Province</option>
-                    <option>Sudurpashchim Province</option>
-                </select>
-
-                <button type="submit">Check Result</button>
-                <button type="button" class="back" onclick="goHome()">Back</button>
-            </form>
-        </div>
-
     </div>
 
-    <script>
-        function openSEE(){
-            document.getElementById("homePage").style.display="none";
-            document.getElementById("seePage").style.display="block";
-        }
+    <!-- FORM -->
+    <div class="form-page" id="seePage">
+        <h1>SEE Result Search</h1>
 
-        function goHome(){
-            document.getElementById("seePage").style.display="none";
-            document.getElementById("homePage").style.display="block";
-        }
+        <form onsubmit="checkResult(event)">
+            <input id="symbol" type="text" placeholder="Enter Symbol Number" required>
 
-        function submitForm(e){
-            e.preventDefault();
-            alert("Searching Result...");
-        }
-    </script>
+            <input id="school" type="text" placeholder="Enter School Name" required>
+
+            <select required>
+                <option>Bagmati Province</option>
+            </select>
+
+            <button type="submit">Check Result</button>
+            <button type="button" class="back" onclick="goHome()">Back</button>
+        </form>
+    </div>
+
+    <!-- RESULT -->
+    <div class="result-page" id="resultPage">
+        <div class="result-box">
+            <h1>SEE Result 2083</h1>
+            <h2>Name: Student Record Found</h2>
+            <h2>School: Suryodaya Secondary Boarding School</h2>
+            <h2>Symbol No: 02909198</h2>
+            <h2>Result: CONGRATULATIONS </h2>
+            <h2>GPA</h2>
+            <div class="GPA">2.91</div>
+
+            <button class="back" onclick="goHome()">Home</button>
+        </div>
+    </div>
+
+</div>
+
+<script>
+function openSEE(){
+    homePage.style.display="none";
+    seePage.style.display="block";
+}
+
+function goHome(){
+    homePage.style.display="block";
+    seePage.style.display="none";
+    resultPage.style.display="none";
+}
+
+function checkResult(e){
+    e.preventDefault();
+
+    let symbol=document.getElementById("symbol").value.trim();
+    let school=document.getElementById("school").value.trim().toLowerCase();
+
+    if(
+        symbol==="02909198" &&
+        school==="suryodaya secondary boarding school"
+    ){
+        seePage.style.display="none";
+        resultPage.style.display="block";
+    }else{
+        alert("Invalid Symbol Number or School Name");
+    }
+}
+</script>
 
 </body>
 </html>
